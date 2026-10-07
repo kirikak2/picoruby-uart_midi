@@ -139,5 +139,6 @@ mrb_picoruby_uart_midi_gem_init(mrb_state *mrb)
 void
 mrb_picoruby_uart_midi_gem_final(mrb_state *mrb)
 {
-    UART_MIDI_deinit();
+    /* Keep the UART up across scripts, as the mruby/c build does: the MIDI
+     * input task and C-side senders (MIDI_transport_send) may still use it. */
 }
